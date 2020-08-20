@@ -20,10 +20,10 @@ node{
             img.push("testpush.${env.BUILD_ID}")
         }
     }
-    stage("Launching pipeline"){
+    stage("Launching dags Airflow"){
         sh(script: "curl -X POST   http://35.240.120.116:8080/api/experimental/dags/airflow_test_api/dag_runs   -H 'Cache-Control: no-cache'   -H 'Content-Type: application/json'   -d '{\"conf\":\"{\\\"key\\\":\\\"value\\\"}\"}' ", returnStdout: true)
     }
-    stage("Using curl example") {
+    stage("Checking Success or failed dags") {
         script {
             final String url = "http://35.240.120.116:8080/api/experimental/dags/airflow_test_api/dag_runs"
             final String response = sh(script: " curl -X GET $url", returnStdout: true).trim()
