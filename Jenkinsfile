@@ -19,6 +19,9 @@ node{
             img.push("testpush.${env.BUILD_ID}")
         }
     }
+    stage("Launching dags Airflow"){
+        sh(script: "curl -X POST   http://35.240.120.116:8080/api/experimental/dags/airflow_test_api/dag_runs   -H 'Cache-Control: no-cache'   -H 'Content-Type: application/json'   -d '{\"conf\":\"{\\\"key\\\":\\\"value\\\"}\"}' ", returnStdout: true)
+    }
     stage("Checking Success or failed dags") {
         script {
             final String url = "http://35.240.120.116:8080/api/experimental/dags/airflow_test_api/dag_runs"
@@ -27,13 +30,15 @@ node{
             def indice = 0
             def indiceFinal=0
             def list =[]
-            for (item in splitext) {
-                if (item =="\"state\":\"success\"}]" || item =="\"state\":\"failed\"}]" ){
-                    list[indice] = item
-                    indiceFinal = indice
-                    indice = indice+1
+            list[0] = "null"
+            while(list[0] == "null")
+                for (item in splitext) {
+                    if (item =="\"state\":\"success\"}]" || item =="\"state\":\"failed\"}]" ){
+                        list[0] = item
+                        /*indiceFinal = indice
+                        indice = indice+1*/
+                    }
                 }
-            }
             for (items in list) {
                 println items
             }
