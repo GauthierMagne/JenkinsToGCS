@@ -19,9 +19,6 @@ node{
             img.push("testpush.${env.BUILD_ID}")
         }
     }
-    stage("Launching dags Airflow"){
-        sh(script: "curl -X POST   http://35.240.120.116:8080/api/experimental/dags/airflow_test_api/dag_runs   -H 'Cache-Control: no-cache'   -H 'Content-Type: application/json'   -d '{\"conf\":\"{\\\"key\\\":\\\"value\\\"}\"}' ", returnStdout: true)
-    }
     stage("Checking Success or failed dags") {
         script {
             def indice = 0
