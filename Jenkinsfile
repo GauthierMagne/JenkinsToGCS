@@ -24,14 +24,14 @@ node{
     }
     stage("Checking Success or failed dags") {
         script {
-            final String url = "http://35.240.120.116:8080/api/experimental/dags/airflow_test_api/dag_runs"
-            final String response = sh(script: " curl -X GET $url", returnStdout: true).trim()
-            def splitext = response.split(",")
             def indice = 0
             def indiceFinal=0
             def list =[]
             list[0] = "null"
             while(list[0] == "null"){
+                final String url = "http://35.240.120.116:8080/api/experimental/dags/airflow_test_api/dag_runs"
+                final String response = sh(script: " curl -X GET $url", returnStdout: true).trim()
+                def splitext = response.split(",")
                 println list[0]
                 for (item in splitext) {
                     if (item =="\"state\":\"success\"}]" || item =="\"state\":\"failed\"}]" ){
