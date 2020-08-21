@@ -37,7 +37,9 @@ node{
                     indice = indice+1
                 }
             }
-            println indiceFinal
+            for (items in list) {
+                println items
+            }
         }
     }
 }
