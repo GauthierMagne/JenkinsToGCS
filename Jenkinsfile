@@ -32,7 +32,7 @@ node{
                 final String url = "http://35.240.120.116:8080/api/experimental/dags/airflow_test_api/dag_runs"
                 final String response = sh(script: " curl -X GET $url", returnStdout: true).trim()
                 println 'Sleeping'
-                sleep(5000)
+                sleep(30)
                 def splitext = response.split(",")
                 println list[0]
                 for (item in splitext) {
