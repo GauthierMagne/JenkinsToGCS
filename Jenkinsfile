@@ -31,7 +31,8 @@ node{
             def indiceFinal=0
             def list =[]
             list[0] = "null"
-            while(list[0] == "null")
+            while(list[0] == "null"){
+                println list[0]
                 for (item in splitext) {
                     if (item =="\"state\":\"success\"}]" || item =="\"state\":\"failed\"}]" ){
                         list[0] = item
@@ -39,9 +40,8 @@ node{
                         indice = indice+1*/
                     }
                 }
-            for (items in list) {
-                println items
             }
+            println list[0]
         }
     }
 }
