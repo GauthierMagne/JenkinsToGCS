@@ -19,6 +19,7 @@ node{
             img.push("testpush.${env.BUILD_ID}")
         }
     }
+
     stage("Checking Success or failed dags") {
         script {
             final String url = "http://35.240.120.116:8080/api/experimental/dags/airflow_test_api/dag_runs"
@@ -33,8 +34,8 @@ node{
                     indiceFinal = indice
                     indice = indice+1
                 }
-                println indiceFinal
             }
+            println indiceFinal
         }
     }
 }
