@@ -4,7 +4,6 @@ node{
     stage('git clone') {
         git credentialsId: 'github', url: 'https://github.com/GauthierMagne/JenkinsToGCS.git'
     }
-    
     stage('send to GCS'){
          googleStorageUpload bucket: "gs://awe-marketo-tool_cloudbuild/test", credentialsId: 'awe-marketo-tool', pattern: 'dags/*.py'
     }
