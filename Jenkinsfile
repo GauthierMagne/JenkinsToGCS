@@ -36,7 +36,7 @@ node{
                     indiceFinal = indice
                     indice = indice+1
                 }
-                println list[indiceFinal]
+                println indiceFinal
             }
         }
     }
